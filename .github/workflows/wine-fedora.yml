@@ -1,8 +1,5 @@
 name: Wine Fedora CI
-
 on:
-  schedule:
-    - cron:  '25 9,21 * * *'
   workflow_dispatch:
 
 jobs:
@@ -16,7 +13,6 @@ jobs:
         run: |
           sudo dnf -y -q update
           cd wine-tkg-git 
-          sed -i 's/distro=""/distro="fedora"/' customization.cfg
           touch tarplz
           yes|./non-makepkg-build.sh
       - name: Archive the artifacts
